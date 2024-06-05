@@ -13,6 +13,8 @@ app.use(cors());
 
 var url = 'mongodb://localhost:27017/';
 
+let users = {};
+
 app.post('/create_class', async (req, res) => {
     const classId = randomBytes(3).toString('hex');
     const { userId, title } = req.body;

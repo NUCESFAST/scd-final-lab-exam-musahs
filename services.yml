@@ -1,3 +1,4 @@
+# Musa 21i-1206 SE-P
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,7 +12,7 @@ spec:
     component: auth
   ports:
     - protocol: TCP
-      port: 4000
+      port: 12061
       targetPort: 4000
 
 ---
@@ -28,7 +29,7 @@ spec:
     component: classrooms
   ports:
     - protocol: TCP
-      port: 4001
+      port: 12062
       targetPort: 4001
 
 ---
@@ -45,7 +46,7 @@ spec:
     component: event-bus
   ports:
     - protocol: TCP
-      port: 4009
+      port: 12063
       targetPort: 4009
 
 ---
@@ -62,7 +63,7 @@ spec:
     component: post
   ports:
     - protocol: TCP
-      port: 4002
+      port: 12064
       targetPort: 4002
 
 ---
@@ -79,5 +80,8 @@ spec:
     component: post
   ports:
     - protocol: TCP
-      port: 4003
+      port: 12065
       targetPort: 8080
+
+
+

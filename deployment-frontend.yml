@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: my-frontend
   namespace: exam
+  labels:
+    app: my-frontend
+    version: v1
 spec:
   replicas: 1
   selector:
@@ -12,9 +15,28 @@ spec:
     metadata:
       labels:
         app: my-frontend
+      annotations: 
+        annotation: "Musa 21i-1206 SE-P"
     spec:
       containers:
       - name: client
         image: musahs/scd_final_exam:client
         ports:
         - containerPort: 80
+        resources: #resource requests and limits
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            cpu: "500m"
+            memory: "500Mi"
+        livenessProbe: #health checks
+          httpGet:
+            path: /health
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+
+
