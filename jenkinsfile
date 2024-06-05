@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKERHUB_USERNAME = 'musahs'
+        DOCKERHUB_PASSWORD = 'dockerhub123'
+    }
+
+    stages {
+        stage('21i-1206_Checkout') {
+            steps {
+                git 'https://github.com/NUCESFAST/scd-final-lab-exam-musahs.git'
+            }
+        }
+
+        stage('21i-1206_Build-Docker-Images') { // dependancies are also installed during this stage
+            steps {
+                bat 'docker compose build'
+            }
+        }
+
+        stage('21i-1206_Login-to-DockerHub') {
+            steps {
+                bat "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
+            }
+        }
+
+        stage('21i-1206_Push-Images') {
+            steps {
+                bat 'docker compose push'
+            }
+        }
+    }
+}
+
+

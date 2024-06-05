@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-backend
+  namespace: exam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-backend
+  template:
+    metadata:
+      labels:
+        app: my-backend
+    spec:
+      containers:
+      - name: auth
+        image: musahs/scd_final_exam:auth
+        ports:
+        - containerPort: 4000
+      - name: classrooms
+        image: musahs/scd_final_exam:classrooms
+        ports:
+        - containerPort: 4001
+      - name: event-bus
+        image: musahs/scd_final_exam:event-bus
+        ports:
+        - containerPort: 4009
+      - name: post
+        image: musahs/scd_final_exam:client
+        ports:
+        - containerPort: 4002
+      - name: mongodb
+        image: mongo:latest
+        ports:
+        - containerPort: 27017
+        volumeMounts:
+        - name: mongo-storage
+          mountPath: /data/db
+      volumes:
+      - name: mongo-storage
+        persistentVolumeClaim:
+          claimName: mongo-pvc

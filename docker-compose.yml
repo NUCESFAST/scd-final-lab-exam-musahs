@@ -1,0 +1,23 @@
+version: '3'
+services:
+  auth:
+    build: ./Auth
+    image: musahs/scd_final_exam:auth
+
+  classrooms:
+    build: ./Classrooms
+    image: musahs/scd_final_exam:classrooms
+
+  event-bus:
+    build: ./event-bus
+    image: musahs/scd_final_exam:event-bus
+
+  post:
+    build: ./Post
+    image: musahs/scd_final_exam:post
+    
+  client:
+    build: ./client
+    image: musahs/scd_final_exam:client
+
+  
